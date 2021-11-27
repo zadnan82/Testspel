@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7F42E7E42751315500BE120D /* ChoiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F42E7E32751315500BE120D /* ChoiceViewController.swift */; };
 		7F9DB41327500DCE002B040C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9DB41227500DCE002B040C /* AppDelegate.swift */; };
 		7F9DB41527500DCE002B040C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9DB41427500DCE002B040C /* SceneDelegate.swift */; };
 		7F9DB41727500DCE002B040C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9DB41627500DCE002B040C /* ViewController.swift */; };
@@ -16,6 +17,7 @@
 		7F9DB42A27500DD2002B040C /* TestspelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9DB42927500DD2002B040C /* TestspelTests.swift */; };
 		7F9DB43427500DD2002B040C /* TestspelUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9DB43327500DD2002B040C /* TestspelUITests.swift */; };
 		7F9DB43627500DD2002B040C /* TestspelUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9DB43527500DD2002B040C /* TestspelUITestsLaunchTests.swift */; };
+		7F9DB4432750E5DC002B040C /* SecondTryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9DB4422750E5DC002B040C /* SecondTryViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +38,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7F42E7E32751315500BE120D /* ChoiceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoiceViewController.swift; sourceTree = "<group>"; };
 		7F9DB40F27500DCE002B040C /* Testspel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Testspel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F9DB41227500DCE002B040C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7F9DB41427500DCE002B040C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -49,6 +52,7 @@
 		7F9DB42F27500DD2002B040C /* TestspelUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TestspelUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F9DB43327500DD2002B040C /* TestspelUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestspelUITests.swift; sourceTree = "<group>"; };
 		7F9DB43527500DD2002B040C /* TestspelUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestspelUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		7F9DB4422750E5DC002B040C /* SecondTryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondTryViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +107,8 @@
 				7F9DB41427500DCE002B040C /* SceneDelegate.swift */,
 				7F9DB41627500DCE002B040C /* ViewController.swift */,
 				7F9DB41827500DCE002B040C /* Main.storyboard */,
+				7F42E7E32751315500BE120D /* ChoiceViewController.swift */,
+				7F9DB4422750E5DC002B040C /* SecondTryViewController.swift */,
 				7F9DB41B27500DD2002B040C /* Assets.xcassets */,
 				7F9DB41D27500DD2002B040C /* LaunchScreen.storyboard */,
 				7F9DB42027500DD2002B040C /* Info.plist */,
@@ -260,6 +266,8 @@
 			files = (
 				7F9DB41727500DCE002B040C /* ViewController.swift in Sources */,
 				7F9DB41327500DCE002B040C /* AppDelegate.swift in Sources */,
+				7F42E7E42751315500BE120D /* ChoiceViewController.swift in Sources */,
+				7F9DB4432750E5DC002B040C /* SecondTryViewController.swift in Sources */,
 				7F9DB41527500DCE002B040C /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
