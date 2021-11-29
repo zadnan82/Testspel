@@ -9,11 +9,11 @@ import UIKit
 
 class ChoiceViewController: UIViewController , UIPickerViewDataSource , UIPickerViewDelegate {
 
+    @IBOutlet weak var player1NameTF: UITextField!
+    @IBOutlet weak var player2NameTF: UITextField!
     @IBOutlet weak var gamePickerView: UIPickerView!
-    
-    private var boardSize = [String](arrayLiteral: "3 X 3" , "4 X 4 " , "5 X 5")
+    private var boardSize = [String](arrayLiteral: "3 X 3" , "4 X 4 " )
     var layout : String?
-    
     var seguesto3 = "seguesto3"
     var seguesto4 = "seguesto4"
    
@@ -59,18 +59,35 @@ class ChoiceViewController: UIViewController , UIPickerViewDataSource , UIPicker
      
 }
    
-/*
+
  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        if segue.identifier == seguesto3 {
+     if segue.identifier == seguesto3 {
             let destinationVC = segue.destination as! SecondTryViewController
-            }
+         
+                if let name1 = player1NameTF.text {
+                    destinationVC.pName1 = String(name1)
+                } else {
+                    destinationVC.pName1 =  "Player 1"
+                }
+                
+                if let name2 = player2NameTF.text {
+                    destinationVC.pName2 = String(name2)
+                } else {
+                    destinationVC.pName2 =  "Player 2"
+                }
+     }
     
-   else if segue.identifier == segues4 {
+            if segue.identifier == seguesto4 {
         let destinationVC1 = segue.destination as! ViewController
+                
+                
+                
+                
+                
         }
 }
- */
+ 
     
     
 }
