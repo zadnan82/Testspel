@@ -38,7 +38,6 @@ class SecondTryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         player1NameLabel.text = pName1
         player2NameLabel.text = pName2
         
@@ -58,7 +57,7 @@ class SecondTryViewController: UIViewController {
                 checkWinner()
                 return
             }
-               else  {
+               else  if player2 == true {
                    imageView.image = UIImage(named: "osign")
                         player1 = true
                         player2 = false
@@ -74,96 +73,62 @@ class SecondTryViewController: UIViewController {
              
                 if [1, 2, 3].allSatisfy(player1list.contains) ||
                    [4, 5, 6].allSatisfy(player1list.contains){
-                    winnerLabel.text = "\(pName1) gets a point!"
-                    player1Score += 1
-                    player1ScoreLabel.text = String(player1Score)
-                    winner = "\(pName1) X"
-                    player1 = true
-                    player2 = false
-                    return
+                   player1Check()
                 }
                 else  if [7, 8 , 9 ].allSatisfy(player1list.contains) ||
                             [1 , 4 , 7 ].allSatisfy(player1list.contains){
-                             winnerLabel.text = "\(pName1) gets a point!"
-                             player1Score += 1
-                             player1ScoreLabel.text = String(player1Score)
-                             winner = "\(pName1) X"
-                             player1 = true
-                             player2 = false
-                             return
+                             player1Check()
                          }
                 else  if [2 , 5 , 8].allSatisfy(player1list.contains) ||
                             [3 , 6 , 9].allSatisfy(player1list.contains){
-                             winnerLabel.text = "\(pName1) gets a point!"
-                             player1Score += 1
-                             player1ScoreLabel.text = String(player1Score)
-                             winner = "\(pName1) X"
-                             player1 = true
-                             player2 = false
-                             return
+                            player1Check()
                          }
                 else  if [1 , 5 , 9 ].allSatisfy(player1list.contains) ||
                             [3 , 5 , 7 ].allSatisfy(player1list.contains){
-                             winnerLabel.text = "\(pName1) gets a point!"
-                             player1Score += 1
-                             player1ScoreLabel.text = String(player1Score)
-                             winner = "\(pName1) X"
-                             player1 = true
-                             player2 = false
-                             return
+                            player1Check()
                          }
                 else   if [1 , 2, 3 ].allSatisfy(player2list.contains) ||
                                 [ 4 , 5 , 6 ].allSatisfy(player2list.contains){
-                                 winnerLabel.text = "\(pName2) gets a point!"
-                                 player2Score += 1
-                                 player2ScoreLabel.text = String(player2Score)
-                                 winner = "\(pName2) O"
-                                 player1 = false
-                                 player2 = true
-                                 return
+                              player2Check()
                              }
                              else  if [ 7 , 8 , 9 ].allSatisfy(player2list.contains) ||
                                     [ 1 , 4 , 7 ].allSatisfy(player2list.contains)  {
-                                 winnerLabel.text = "\(pName2) gets a point!"
-                                 player2Score += 1
-                                 player2ScoreLabel.text = String(player2Score)
-                                 winner = "\(pName2) O"
-                                 player1 = false
-                                 player2 = true
-                                 return
+                                 player2Check()
                                       }
                              else  if [ 2 , 5 , 8 ].allSatisfy(player2list.contains) ||
                                     [3 , 6 , 9 ].allSatisfy(player2list.contains) {
-                                 winnerLabel.text = "\(pName2) gets a point!"
-                                 player2Score += 1
-                                 player2ScoreLabel.text = String(player2Score)
-                                 winner = "\(pName2) O"
-                                 player1 = false
-                                 player2 = true
-                                 return
+                                 player2Check()
                                       }
                              else  if [1, 5 , 9 ].allSatisfy(player2list.contains) ||
                                     [3 , 5 , 7 ].allSatisfy(player2list.contains) {
-                                 winnerLabel.text = "\(pName2) gets a point!"
-                                 player2Score += 1
-                                 player2ScoreLabel.text = String(player2Score)
-                                 winner = "\(pName2) O"
-                                 player1 = false
-                                 player2 = true
-                                 return
+                                player2Check()
                                       }
-               
                 else if player1list.count + player2list.count > 8   {
-                    
                     winnerLabel.text = "No one gets a point!"
                     winner = "NO"
-                    
                     randomplayer()
                 }
         }
-        
+    
+    func player1Check(){
+        winnerLabel.text = "\(pName1) gets a point!"
+        player1Score += 1
+        player1ScoreLabel.text = String(player1Score)
+        winner = pName1
+        deactivePlayers()
+        return
+    }
+    
+    func player2Check(){
+        winnerLabel.text = "\(pName2) gets a point!"
+        player2Score += 1
+        player2ScoreLabel.text = String(player2Score)
+        winner = pName2
+        deactivePlayers()
+        return
+    }
+    
     func randomplayer() {
-        
         number = Int.random(in: 1..<3)
         if number == 1 {
             player1 = true
@@ -176,8 +141,11 @@ class SecondTryViewController: UIViewController {
             announcementLabel.text = "\(pName2) O will start playing"
             return
         }
-        
-        
+    }
+    
+    func deactivePlayers(){
+        player1 = false
+        player2 = false
     }
     
     @IBAction func playAgain(_ sender: Any) {
@@ -196,10 +164,14 @@ class SecondTryViewController: UIViewController {
         
         if winner == "NO" {
             randomplayer()
-        } else {
-            announcementLabel.text = ("\(winner) will start now")
+        } else if winner == pName1 {
+            announcementLabel.text = ("\(winner) X will start now")
+            player1 = true
+            winnerLabel.text = " "
+        } else  if winner == pName2 {
+            announcementLabel.text = ("\(winner) O will start now")
+            player2 = true
             winnerLabel.text = " "
         }
-        
     }
 }

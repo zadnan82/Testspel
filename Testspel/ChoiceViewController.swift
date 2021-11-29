@@ -16,17 +16,35 @@ class ChoiceViewController: UIViewController , UIPickerViewDataSource , UIPicker
     var layout : String?
     var seguesto3 = "seguesto3"
     var seguesto4 = "seguesto4"
-   
+    private let userDefaultsRowKey = "defaultsPickerRow"
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-     
-        let defaultPickerRow = 0
-            
-            gamePickerView.selectRow(defaultPickerRow, inComponent: 0, animated: false)
+        let defaultPickerRow = initialPickerRow()
+                
+                gamePickerView.selectRow(defaultPickerRow, inComponent: 0, animated: false)
+                pickerView(gamePickerView, didSelectRow: defaultPickerRow, inComponent: 0)
         
     }
+    
+    func initialPickerRow() -> Int {
+            
+            let savedRow = UserDefaults.standard.object(forKey: userDefaultsRowKey) as? Int
+            if let row = savedRow {
+                return row
+            } else {
+                return 0
+            }
+        }
+        
+    func saveSelected(row: Int) {
+           let defaults = UserDefaults.standard
+           defaults.set(row, forKey: userDefaultsRowKey)
+           defaults.synchronize()
+       }
+       
+
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
