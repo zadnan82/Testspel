@@ -12,7 +12,7 @@ class ChoiceViewController: UIViewController , UIPickerViewDataSource , UIPicker
     @IBOutlet weak var player1NameTF: UITextField!
     @IBOutlet weak var player2NameTF: UITextField!
     @IBOutlet weak var gamePickerView: UIPickerView!
-    private var boardSize = [String](arrayLiteral: "3 X 3" , "4 X 4 " )
+    private var boardSize = [String](arrayLiteral: "3 X 3" , "4 X 4" )
     var layout : String?
     var seguesto3 = "seguesto3"
     var seguesto4 = "seguesto4"
@@ -65,7 +65,7 @@ class ChoiceViewController: UIViewController , UIPickerViewDataSource , UIPicker
 
     @IBAction func goToGame(_ sender: UIButton) {
         
-        if let game = layout {
+            if let game = layout {
             print(game)
             if game == "4 X 4" {
                 performSegue(withIdentifier: seguesto4, sender: self)
@@ -74,6 +74,7 @@ class ChoiceViewController: UIViewController , UIPickerViewDataSource , UIPicker
                 performSegue(withIdentifier: seguesto3, sender: self)
         }
     }
+  
      
 }
    
@@ -92,20 +93,36 @@ class ChoiceViewController: UIViewController , UIPickerViewDataSource , UIPicker
                 if let name2 = player2NameTF.text {
                     destinationVC.pName2 = String(name2)
                 } else {
-                    destinationVC.pName2 =  "Player 2"
+                    destinationVC.pName2 =  "AI"
                 }
+         if let game = layout {
+             destinationVC.choice = String(game)
+         } else {
+             destinationVC.choice =  "3 X 3"
+         }
      }
     
-            if segue.identifier == seguesto4 {
-        let destinationVC1 = segue.destination as! ViewController
-                
-                
-                
-                
-                
+     else if  segue.identifier == seguesto4 {
+        let destinationVC1 = segue.destination as! SecondTryViewController
+         if let name1 = player1NameTF.text {
+             destinationVC1.pName1 = String(name1)
+         } else {
+             destinationVC1.pName1 =  "Player 1"
+         }
+         
+         if let name2 = player2NameTF.text {
+             destinationVC1.pName2 = String(name2)
+         } else {
+             destinationVC1.pName2 =  "AI"
+         }
+         
+         if let game = layout {
+             destinationVC1.choice = String(game)
+         } else {
+             destinationVC1.choice =  "4 X 4"
+         }
         }
-}
- 
+ }
     
     
 }
