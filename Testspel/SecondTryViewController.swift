@@ -51,14 +51,16 @@ class SecondTryViewController: UIViewController {
     var player1 : Bool = false
     var player2 : Bool = false
     var number = 0
-    var player1list = [Int]()
-    var player2list = [Int]()
+    //var player1list = [Int]()
+    //var player2list = [Int]()
     var player1Score = 0
     var player2Score = 0
     var winner = ""
     var pName1 = "Player 1"
     var pName2 = "Player 2"
     var choice = ""
+    
+    var game = Game()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -76,94 +78,68 @@ class SecondTryViewController: UIViewController {
     }
       
     @IBAction func tapped(_ sender: UITapGestureRecognizer) {
-    
-        if let imageView = sender.view as? UIImageView {
-            let imageLocation = imageView.tag
-            if ![imageLocation].allSatisfy(player1list.contains) && ![imageLocation].allSatisfy(player2list.contains) {
+ 
+        guard let imageView = sender.view as? UIImageView else { return }
+          
+        let imageLocation = imageView.tag
+            
+        if game.canplay(imageLocation: imageLocation) {
+            
             if player1 == true {
                 imageView.image = UIImage(named: "xsign")
                 player1 = false ; player2 = true
-                player1list.append(Int(imageLocation))
-                checkWinner()
+                game.addToPlayer1List(imageLocation: imageLocation)
+                if choice == "3 X 3"{
+                    if game.check3Winner1(player1: player1) {
+                        player1Check()
+                    }
+                   if game.checkDraw3(){
+                        winnerLabel.text = "No one gets a point!"
+                        winner = "NO" 
+                    }
                 return
-            }
-               else  if player2 == true {
-                   imageView.image = UIImage(named: "osign")
-                   player1 = true ; player2 = false
-                   player2list.append(Int(imageLocation))
-                   checkWinner()
-                    return
                 }
-            }
+                
+                else if game.check4Winner1(player1: player1) {
+                    player1Check()
+                    }
+                if game.checkDraw4() {
+                    winnerLabel2.text = "No one gets a point!"
+                    winner = "NO"
+                }
+                    return }
+            
+            
+              else  if player2 == true {
+                    imageView.image = UIImage(named: "osign")
+                  player2 = false ; player1 = true
+                    game.addToPlayer2List(imageLocation: imageLocation)
+                  if choice == "3 X 3"{
+                  if game.check3Winner2(player2: player2) {
+                  player2Check()
+                  }
+                      if game.checkDraw3(){
+                           winnerLabel.text = "No one gets a point!"
+                           winner = "NO"
+                       }
+                  return
+                  }
+                  
+                  else if game.check4Winner2(player2: player2) {
+                      player2Check()
+                      }
+            if game.checkDraw4(){
+                 winnerLabel.text = "No one gets a point!"
+                 winner = "NO"
+             }
+         return
+         }
     }
-}
-        
-            func checkWinner() {
-                if choice == "3 X 3" {
-                if [1, 2, 3].allSatisfy(player1list.contains) ||
-                   [4, 5, 6].allSatisfy(player1list.contains){
-                   player1Check()}
-                else  if [7, 8 , 9 ].allSatisfy(player1list.contains) ||
-                            [1 , 4 , 7 ].allSatisfy(player1list.contains){
-                             player1Check()}
-                else  if [2 , 5 , 8].allSatisfy(player1list.contains) ||
-                            [3 , 6 , 9].allSatisfy(player1list.contains){
-                            player1Check()}
-                else  if [1 , 5 , 9 ].allSatisfy(player1list.contains) ||
-                            [3 , 5 , 7 ].allSatisfy(player1list.contains){
-                            player1Check() }
-                else   if [1 , 2, 3 ].allSatisfy(player2list.contains) ||
-                        [ 4 , 5 , 6 ].allSatisfy(player2list.contains){
-                              player2Check()  }
-                else  if [ 7 , 8 , 9 ].allSatisfy(player2list.contains) ||
-                        [ 1 , 4 , 7].allSatisfy(player2list.contains)  {
-                                 player2Check() }
-                else  if [ 2 , 5 , 8 ].allSatisfy(player2list.contains) ||
-                         [3 , 6 , 9 ].allSatisfy(player2list.contains) {
-                                 player2Check()}
-                else  if [1, 5 , 9 ].allSatisfy(player2list.contains) ||
-                        [3 , 5 , 7 ].allSatisfy(player2list.contains) {
-                                player2Check()}
-                else if player1list.count + player2list.count > 8   {
-                    winnerLabel.text = "No one gets a point!"
-                    winner = "NO" }
-                } else {
-                    if [1, 2, 3 , 4 ].allSatisfy(player1list.contains) ||
-                        [5, 6 , 7, 8].allSatisfy(player1list.contains){
-                       player1Check()}
-                else  if [ 9 , 10 , 11 ,12 ].allSatisfy(player1list.contains) ||
-                        [13 , 14 , 15, 16 ].allSatisfy(player1list.contains){
-                                player1Check()}
-                else  if [1 , 5 , 9 , 13].allSatisfy(player1list.contains) ||
-                        [2 , 6 , 10 , 14].allSatisfy(player1list.contains){
-                                player1Check()}
-                else  if [3 , 7 , 11 , 15 ].allSatisfy(player1list.contains) ||
-                        [4 , 8 , 12 , 16 ].allSatisfy(player1list.contains){
-                        player1Check()}
-                else  if [1 , 6 , 11 , 16 ].allSatisfy(player1list.contains) ||
-                        [4 , 7 , 10 , 13 ].allSatisfy(player1list.contains){
-                        player1Check()}
-                else   if [1, 2, 3 , 4 ].allSatisfy(player2list.contains) ||
-                        [5 , 6 , 7, 8] .allSatisfy(player2list.contains){
-                           player2Check() }
-                else  if [ 9 , 10 , 11 ,12 ].allSatisfy(player2list.contains) ||
-                        [13 , 14 , 15, 16 ].allSatisfy(player2list.contains){
-                           player2Check()   }
-                else  if [1 , 5 , 9 , 13].allSatisfy(player2list.contains) ||
-                        [2 , 6 , 10 , 14].allSatisfy(player2list.contains){
-                           player2Check()  }
-                else  if [3 , 7 , 11 , 15 ].allSatisfy(player2list.contains) ||
-                        [4 , 8 , 12 , 16 ].allSatisfy(player2list.contains){
-                           player2Check()}
-                else  if [1 , 6 , 11 , 16 ].allSatisfy(player2list.contains) ||
-                        [4 , 7 , 10 , 13 ].allSatisfy(player2list.contains){
-                           player2Check() }
-                else if player1list.count + player2list.count > 15   {
-                        winnerLabel2.text = "No one gets a point!"
-                        winner = "NO" }
-                }
-      }
     
+}
+
+
+
     func player1Check(){
         if choice == "3 X 3"{
         winnerLabel.text = "\(pName1) gets a point!"
@@ -231,7 +207,8 @@ class SecondTryViewController: UIViewController {
     }
     
     @IBAction func playAgain(_ sender: Any) {
-        player1list.removeAll() ; player2list.removeAll()
+        game.clearLists()
+        
         if choice == "3 X 3" {
             a1.image = UIImage(named: "") ; a2.image = UIImage(named: "")
             a3.image = UIImage(named: "") ; b1.image = UIImage(named: "")
