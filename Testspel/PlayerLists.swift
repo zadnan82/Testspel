@@ -19,7 +19,7 @@ class Game {
     var player2list = [Int]()
     
     
-    func canplay(imageLocation : Int ) -> Bool {
+    func canPlay(imageLocation : Int ) -> Bool {
        
             if ![imageLocation].allSatisfy(player1list.contains)
                 && ![imageLocation].allSatisfy(player2list.contains){
@@ -28,10 +28,7 @@ class Game {
                
             } else {
                 return false }
-
-
     }
-     
     
     func addToPlayer1List(imageLocation: Int){
     player1list.append(imageLocation)
@@ -57,9 +54,6 @@ func addToPlayer2List(imageLocation: Int){
                        else  if [1 , 5 , 9 ].allSatisfy(player1list.contains) ||
                                    [3 , 5 , 7 ].allSatisfy(player1list.contains){
                            return true  }
-                     //  else if player1list.count + player2list.count > 8   {
-                       //    winnerLabel.text = "No one gets a point!"
-//                         //  winner = "NO" } }
         else { return false}
              }
         
@@ -81,12 +75,9 @@ func addToPlayer2List(imageLocation: Int){
                        else  if [1 , 6 , 11 , 16 ].allSatisfy(player1list.contains) ||
                                [4 , 7 , 10 , 13 ].allSatisfy(player1list.contains){
                            return true}
-//
-                      // else if player1list.count + player2list.count > 15   {
-                        //       winnerLabel2.text = "No one gets a point!"
-                          //     winner = "NO" }}
         else { return false}
-             }
+        
+    }
 
 func check3Winner2(player2 : Bool) ->  Bool {
    
@@ -103,11 +94,7 @@ func check3Winner2(player2 : Bool) ->  Bool {
                        else  if [1, 5 , 9 ].allSatisfy(player2list.contains) ||
                                [3 , 5 , 7 ].allSatisfy(player2list.contains) {
                            return true }
-                     //  else if player1list.count + player2list.count > 8   {
-                       //    winnerLabel.text = "No one gets a point!"
-                         //  winner = "NO" } }
-
-    else { return false}
+                else { return false}
 }
   
     func check4Winner2(player2 : Bool) ->  Bool {
@@ -127,28 +114,26 @@ func check3Winner2(player2 : Bool) ->  Bool {
                        else  if [1 , 6 , 11 , 16 ].allSatisfy(player2list.contains) ||
                                [4 , 7 , 10 , 13 ].allSatisfy(player2list.contains){
                            return true }
-//                      // else if player1list.count + player2list.count > 15   {
-//                        //       winnerLabel2.text = "No one gets a point!"
-//                          //     winner = "NO" }}
-        else { return false}
-             }
+            else { return false}
+}
     
     
     func clearLists() {
-        
         player1list.removeAll() ; player2list.removeAll()
     }
     
     func checkDraw3() -> Bool  {
-    if player1list.count + player2list.count > 8{
-        return true
-    } else { return false }
+        if player1list.count + player2list.count > 8{
+            return true
+                } else {
+                    return false }
     }
         
-        func checkDraw4() -> Bool  {
-            if player1list.count + player2list.count > 15{
-                return true
-            } else { return false }
+    func checkDraw4() -> Bool  {
+        if player1list.count + player2list.count > 15{
+        return true
+            } else {
+                return false }
             }
 }
 

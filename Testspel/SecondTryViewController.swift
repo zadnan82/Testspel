@@ -51,8 +51,6 @@ class SecondTryViewController: UIViewController {
     var player1 : Bool = false
     var player2 : Bool = false
     var number = 0
-    //var player1list = [Int]()
-    //var player2list = [Int]()
     var player1Score = 0
     var player2Score = 0
     var winner = ""
@@ -83,7 +81,7 @@ class SecondTryViewController: UIViewController {
           
         let imageLocation = imageView.tag
             
-        if game.canplay(imageLocation: imageLocation) {
+        if game.canPlay(imageLocation: imageLocation) {
             
             if player1 == true {
                 imageView.image = UIImage(named: "xsign")
@@ -107,9 +105,8 @@ class SecondTryViewController: UIViewController {
                     winnerLabel2.text = "No one gets a point!"
                     winner = "NO"
                 }
-                    return }
-            
-            
+                    return
+            }
               else  if player2 == true {
                     imageView.image = UIImage(named: "osign")
                   player2 = false ; player1 = true
@@ -124,7 +121,6 @@ class SecondTryViewController: UIViewController {
                        }
                   return
                   }
-                  
                   else if game.check4Winner2(player2: player2) {
                       player2Check()
                       }
@@ -135,10 +131,7 @@ class SecondTryViewController: UIViewController {
          return
          }
     }
-    
 }
-
-
 
     func player1Check(){
         if choice == "3 X 3"{
