@@ -438,7 +438,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-2919" y="-1104"/>
+            <point key="canvasLocation" x="-2723" y="-1023"/>
         </scene>
         <!--Second Try View Controller-->
         <scene sceneID="pcd-Py-iJB">
@@ -675,7 +675,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-2845" y="-1734"/>
+            <point key="canvasLocation" x="-2671" y="-1705"/>
         </scene>
     </scenes>
     <resources>

@@ -56,19 +56,21 @@ class SecondTryViewController: UIViewController {
     var player1Score = 0
     var player2Score = 0
     var winner = ""
-    var pName1 = ""
-    var pName2 = ""
+    var pName1 = "Player 1"
+    var pName2 = "Player 2"
     var choice = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
         if choice == "3 X 3" {
             player1NameLabel.text = pName1
             player2NameLabel.text = pName2
         } else {
-            player1NameLabel2.text = pName1
-            player2NameLabel2.text = pName2
+       
+        player1NameLabel2.text = pName1
+        player2NameLabel2.text = pName2
         }
         randomplayer()
     }

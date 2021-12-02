@@ -66,7 +66,6 @@ class ChoiceViewController: UIViewController , UIPickerViewDataSource , UIPicker
     @IBAction func goToGame(_ sender: UIButton) {
         
             if let game = layout {
-            print(game)
             if game == "4 X 4" {
                 performSegue(withIdentifier: seguesto4, sender: self)
             }
@@ -84,42 +83,35 @@ class ChoiceViewController: UIViewController , UIPickerViewDataSource , UIPicker
      if segue.identifier == seguesto3 {
             let destinationVC = segue.destination as! SecondTryViewController
          
-                if let name1 = player1NameTF.text {
+         if let name1 = player1NameTF.text {
                     destinationVC.pName1 = String(name1)
-                } else {
-                    destinationVC.pName1 =  "Player 1"
-                }
+                    
+         } else {
+             destinationVC.pName1 = "Player 1"
+         }
                 
                 if let name2 = player2NameTF.text {
                     destinationVC.pName2 = String(name2)
-                } else {
-                    destinationVC.pName2 =  "AI"
                 }
+         
          if let game = layout {
              destinationVC.choice = String(game)
-         } else {
-             destinationVC.choice =  "3 X 3"
          }
+         
      }
     
      else if  segue.identifier == seguesto4 {
         let destinationVC1 = segue.destination as! SecondTryViewController
+         
          if let name1 = player1NameTF.text {
              destinationVC1.pName1 = String(name1)
-         } else {
-             destinationVC1.pName1 =  "Player 1"
          }
          
          if let name2 = player2NameTF.text {
              destinationVC1.pName2 = String(name2)
-         } else {
-             destinationVC1.pName2 =  "AI"
          }
-         
          if let game = layout {
              destinationVC1.choice = String(game)
-         } else {
-             destinationVC1.choice =  "4 X 4"
          }
         }
  }
