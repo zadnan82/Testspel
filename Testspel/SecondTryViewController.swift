@@ -79,60 +79,58 @@ class SecondTryViewController: UIViewController {
         if game.canPlay(imageLocation: imageLocation) {
             if player1 == true {
                 imageView.image = UIImage(named: "xsign")
-                player1 = false ; player2 = true
-                let choic = choice
+               // player1 = false ; player2 = true
                 game.addToPlayer1List(imageLocation: imageLocation)
-                if game.checkWinner1( player1: player1 , choic: choic) {
-                        player1Check()
+                if game.checkWinner( player1: player1 , choice: choice) {
+                    playerCheck(player1: player1)
                     }
+                player1 = false ; player2 = true
                 }
             else  if player2 == true {
                 imageView.image = UIImage(named: "osign")
-                player2 = false ; player1 = true
-                let choic = choice
+                //player2 = false ; player1 = true
+              
                 game.addToPlayer2List(imageLocation: imageLocation)
-                if game.checkWinner2( player2: player2 , choic : choic) {
-                        player2Check()
+                if game.checkWinner( player1: player1 , choice: choice) {
+                    playerCheck(player1: player1)
                     }
+                player2 = false ; player1 = true
             }
+            
         }
-        if choice == "3 X 3" {
-            if game.checkDraw3(){
+        
+        
+        if game.checkDraw(choice : choice) {
                 winnerLabel?.text = "No one gets a point!"
+                winnerLabel2?.text = "No one gets a point!"
                 winner = "NO"
-            }
-        } else if
-            choice == "4 X 4" {
-                if game.checkDraw4(){
-                    winnerLabel2?.text = "No one gets a point!"
-                    winner = "NO"
-                }
-    }
+         }
+        
         return
     }
     
-    func player1Check(){
-        winnerLabel?.text = "\(pName1) gets a point!"
-        winnerLabel2?.text = "\(pName1) gets a point!"
-        player1Score += 1
-        player1ScoreLabel?.text = String(player1Score)
-        player1ScoreLabel2?.text = String(player1Score)
-        winner = pName1
+    func playerCheck(player1 : Bool){
+        var playerScore : Int
+        var pName : String
+        if player1 {
+            pName = pName1
+            player1Score += 1
+            playerScore = player1Score
+            player1ScoreLabel?.text = String(playerScore)
+            player1ScoreLabel2?.text = String(playerScore)
+        } else {
+            pName = pName2
+            player2Score += 1
+            playerScore = player2Score
+            player2ScoreLabel?.text = String(playerScore)
+            player2ScoreLabel2?.text = String(playerScore)
+        }
+        winnerLabel?.text = "\(pName) gets a point!"
+        winnerLabel2?.text = "\(pName) gets a point!"
         deactivePlayers()
         return
     }
-    
-    func player2Check(){
-        winnerLabel?.text = "\(pName2) gets a point!"
-        winnerLabel2?.text = "\(pName2) gets a point!"
-        player2Score += 1
-        player2ScoreLabel?.text = String(player2Score)
-        player2ScoreLabel2?.text = String(player2Score)
-        winner = pName2
-        deactivePlayers()
-        return
-    }
-    
+ 
     func randomplayer() {
         number = Int.random(in: 1..<3)
         if number == 1 {
@@ -169,9 +167,8 @@ class SecondTryViewController: UIViewController {
         d33?.image = UIImage(named: ""); d44?.image = UIImage(named: "")
         winnerLabel?.text = ""
         winnerLabel2?.text = ""
-        if winner == "NO" {
-            randomplayer()
-        } else if winner == pName1 {
+    
+         if winner == pName1 {
             announcementLabel?.text = ("\(winner) X will start now")
             announcementLabel2?.text = ("\(winner) X will start now")
             player1 = true
@@ -179,6 +176,8 @@ class SecondTryViewController: UIViewController {
             announcementLabel?.text = ("\(winner) O will start now")
             announcementLabel2?.text = ("\(winner) O will start now")
             player2 = true
+        }  else if winner == "NO" {
+            randomplayer()
         }
     }
 }
