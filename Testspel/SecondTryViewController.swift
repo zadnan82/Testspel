@@ -57,141 +57,94 @@ class SecondTryViewController: UIViewController {
     var pName1 = "Player 1"
     var pName2 = "Player 2"
     var choice = ""
-    
     var game = Game()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         if choice == "3 X 3" {
             player1NameLabel.text = pName1
             player2NameLabel.text = pName2
         } else {
-       
-        player1NameLabel2.text = pName1
-        player2NameLabel2.text = pName2
+            player1NameLabel2.text = pName1
+            player2NameLabel2.text = pName2
         }
         randomplayer()
     }
-      
+    
     @IBAction func tapped(_ sender: UITapGestureRecognizer) {
- 
         guard let imageView = sender.view as? UIImageView else { return }
-          
         let imageLocation = imageView.tag
-            
+        
         if game.canPlay(imageLocation: imageLocation) {
-            
             if player1 == true {
                 imageView.image = UIImage(named: "xsign")
                 player1 = false ; player2 = true
+                let choic = choice
                 game.addToPlayer1List(imageLocation: imageLocation)
-                if choice == "3 X 3"{
-                    if game.check3Winner1(player1: player1) {
+                if game.checkWinner1( player1: player1 , choic: choic) {
                         player1Check()
                     }
-                   if game.checkDraw3(){
-                        winnerLabel.text = "No one gets a point!"
-                        winner = "NO" 
-                    }
-                return
                 }
-                
-                else if game.check4Winner1(player1: player1) {
-                    player1Check()
+            else  if player2 == true {
+                imageView.image = UIImage(named: "osign")
+                player2 = false ; player1 = true
+                let choic = choice
+                game.addToPlayer2List(imageLocation: imageLocation)
+                if game.checkWinner2( player2: player2 , choic : choic) {
+                        player2Check()
                     }
-                if game.checkDraw4() {
-                    winnerLabel2.text = "No one gets a point!"
+            }
+        }
+        if choice == "3 X 3" {
+            if game.checkDraw3(){
+                winnerLabel?.text = "No one gets a point!"
+                winner = "NO"
+            }
+        } else if
+            choice == "4 X 4" {
+                if game.checkDraw4(){
+                    winnerLabel2?.text = "No one gets a point!"
                     winner = "NO"
                 }
-                    return
-            }
-              else  if player2 == true {
-                    imageView.image = UIImage(named: "osign")
-                  player2 = false ; player1 = true
-                    game.addToPlayer2List(imageLocation: imageLocation)
-                  if choice == "3 X 3"{
-                  if game.check3Winner2(player2: player2) {
-                  player2Check()
-                  }
-                      if game.checkDraw3(){
-                           winnerLabel.text = "No one gets a point!"
-                           winner = "NO"
-                       }
-                  return
-                  }
-                  else if game.check4Winner2(player2: player2) {
-                      player2Check()
-                      }
-            if game.checkDraw4(){
-                 winnerLabel.text = "No one gets a point!"
-                 winner = "NO"
-             }
-         return
-         }
     }
-}
-
+        return
+    }
+    
     func player1Check(){
-        if choice == "3 X 3"{
-        winnerLabel.text = "\(pName1) gets a point!"
+        winnerLabel?.text = "\(pName1) gets a point!"
+        winnerLabel2?.text = "\(pName1) gets a point!"
         player1Score += 1
-        player1ScoreLabel.text = String(player1Score)
+        player1ScoreLabel?.text = String(player1Score)
+        player1ScoreLabel2?.text = String(player1Score)
         winner = pName1
         deactivePlayers()
         return
-        } else {
-            winnerLabel2.text = "\(pName1) gets a point!"
-            player1Score += 1
-            player1ScoreLabel2.text = String(player1Score)
-            winner = pName1
-            deactivePlayers()
-            return
-        }
     }
     
     func player2Check(){
-        if choice == "3 X 3"{
-        winnerLabel.text = "\(pName2) gets a point!"
+        winnerLabel?.text = "\(pName2) gets a point!"
+        winnerLabel2?.text = "\(pName2) gets a point!"
         player2Score += 1
-        player2ScoreLabel.text = String(player2Score)
+        player2ScoreLabel?.text = String(player2Score)
+        player2ScoreLabel2?.text = String(player2Score)
         winner = pName2
         deactivePlayers()
         return
-        } else {
-            winnerLabel2.text = "\(pName2) gets a point!"
-            player2Score += 1
-            player2ScoreLabel2.text = String(player2Score)
-            winner = pName2
-            deactivePlayers()
-            return
-        }
-        }
+    }
     
     func randomplayer() {
-        if choice == "3 X 3" {
-            number = Int.random(in: 1..<3)
-            if number == 1 {
-                player1 = true ; player2 = false
-                announcementLabel.text = "\(pName1) X will start playing"
-                return
-            } else {
-                player2 = true ; player1 = false
-                announcementLabel.text = "\(pName2) O will start playing"
-                return
-            }
+        number = Int.random(in: 1..<3)
+        if number == 1 {
+            player1 = true ; player2 = false
+            announcementLabel?.text = "\(pName1) X will start playing"
+            announcementLabel2?.text = "\(pName1) X will start playing"
+            return
         } else {
-            number = Int.random(in: 1..<3)
-            if number == 1 {
-                player1 = true ; player2 = false
-                announcementLabel2.text = "\(pName1) X will start playing"
-                return
-            } else {
-                player2 = true ; player1 = false
-                announcementLabel2.text = "\(pName2) O will start playing"
-                return
-            }
+            player2 = true ; player1 = false
+            announcementLabel?.text = "\(pName2) O will start playing"
+            announcementLabel2?.text = "\(pName2) O will start playing"
+            return
         }
     }
     
@@ -201,46 +154,32 @@ class SecondTryViewController: UIViewController {
     
     @IBAction func playAgain(_ sender: Any) {
         game.clearLists()
-        
-        if choice == "3 X 3" {
-            a1.image = UIImage(named: "") ; a2.image = UIImage(named: "")
-            a3.image = UIImage(named: "") ; b1.image = UIImage(named: "")
-            b2.image = UIImage(named: "") ; b3.image = UIImage(named: "")
-            c1.image = UIImage(named: "") ; c2.image = UIImage(named: "")
-            c3.image = UIImage(named: "")
-        winnerLabel.text = ""
+        a1?.image = UIImage(named: "") ; a2?.image = UIImage(named: "")
+        a3?.image = UIImage(named: "") ; b1?.image = UIImage(named: "")
+        b2?.image = UIImage(named: "") ; b3?.image = UIImage(named: "")
+        c1?.image = UIImage(named: "") ; c2?.image = UIImage(named: "")
+        c3?.image = UIImage(named: "")
+        a11?.image = UIImage(named: ""); a22?.image = UIImage(named: "")
+        a33?.image = UIImage(named: ""); a44?.image = UIImage(named: "")
+        b11?.image = UIImage(named: ""); b22?.image = UIImage(named: "")
+        b33?.image = UIImage(named: ""); b44?.image = UIImage(named: "")
+        c11?.image = UIImage(named: ""); c22?.image = UIImage(named: "")
+        c33?.image = UIImage(named: ""); c44?.image = UIImage(named: "")
+        d11?.image = UIImage(named: ""); d22?.image = UIImage(named: "")
+        d33?.image = UIImage(named: ""); d44?.image = UIImage(named: "")
+        winnerLabel?.text = ""
+        winnerLabel2?.text = ""
         if winner == "NO" {
             randomplayer()
         } else if winner == pName1 {
-            announcementLabel.text = ("\(winner) X will start now")
+            announcementLabel?.text = ("\(winner) X will start now")
+            announcementLabel2?.text = ("\(winner) X will start now")
             player1 = true
-            winnerLabel.text = " "
         } else  if winner == pName2 {
-            announcementLabel.text = ("\(winner) O will start now")
+            announcementLabel?.text = ("\(winner) O will start now")
+            announcementLabel2?.text = ("\(winner) O will start now")
             player2 = true
-            winnerLabel.text = " "
-        }
-        } else {
-            a11.image = UIImage(named: ""); a22.image = UIImage(named: "")
-            a33.image = UIImage(named: ""); a44.image = UIImage(named: "")
-            b11.image = UIImage(named: ""); b22.image = UIImage(named: "")
-            b33.image = UIImage(named: ""); b44.image = UIImage(named: "")
-            c11.image = UIImage(named: ""); c22.image = UIImage(named: "")
-            c33.image = UIImage(named: ""); c44.image = UIImage(named: "")
-            d11.image = UIImage(named: ""); d22.image = UIImage(named: "")
-            d33.image = UIImage(named: ""); d44.image = UIImage(named: "")
-            winnerLabel2.text = ""
-            if winner == "NO" {
-                randomplayer()
-            } else if winner == pName1 {
-                announcementLabel2.text = ("\(winner) X will start now")
-                player1 = true
-                winnerLabel2.text = " "
-            } else  if winner == pName2 {
-                announcementLabel2.text = ("\(winner) O will start now")
-                player2 = true
-                winnerLabel2.text = " "
         }
     }
 }
-}
+
