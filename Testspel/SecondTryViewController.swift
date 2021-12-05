@@ -79,7 +79,6 @@ class SecondTryViewController: UIViewController {
         if game.canPlay(imageLocation: imageLocation) {
             if player1 == true {
                 imageView.image = UIImage(named: "xsign")
-               // player1 = false ; player2 = true
                 game.addToPlayer1List(imageLocation: imageLocation)
                 if game.checkWinner( player1: player1 , choice: choice) {
                     playerCheck(player1: player1)
@@ -88,24 +87,18 @@ class SecondTryViewController: UIViewController {
                 }
             else  if player2 == true {
                 imageView.image = UIImage(named: "osign")
-                //player2 = false ; player1 = true
-              
                 game.addToPlayer2List(imageLocation: imageLocation)
                 if game.checkWinner( player1: player1 , choice: choice) {
                     playerCheck(player1: player1)
                     }
                 player2 = false ; player1 = true
             }
-            
         }
-        
-        
         if game.checkDraw(choice : choice) {
                 winnerLabel?.text = "No one gets a point!"
                 winnerLabel2?.text = "No one gets a point!"
                 winner = "NO"
          }
-        
         return
     }
     
@@ -167,7 +160,6 @@ class SecondTryViewController: UIViewController {
         d33?.image = UIImage(named: ""); d44?.image = UIImage(named: "")
         winnerLabel?.text = ""
         winnerLabel2?.text = ""
-    
          if winner == pName1 {
             announcementLabel?.text = ("\(winner) X will start now")
             announcementLabel2?.text = ("\(winner) X will start now")
