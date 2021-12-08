@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7F272BAE2758DC88005824DA /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F272BAD2758DC88005824DA /* Game.swift */; };
 		7F42E7E42751315500BE120D /* ChoiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F42E7E32751315500BE120D /* ChoiceViewController.swift */; };
 		7F9DB41327500DCE002B040C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9DB41227500DCE002B040C /* AppDelegate.swift */; };
 		7F9DB41527500DCE002B040C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9DB41427500DCE002B040C /* SceneDelegate.swift */; };
@@ -37,6 +38,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7F272BAD2758DC88005824DA /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		7F42E7E32751315500BE120D /* ChoiceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoiceViewController.swift; sourceTree = "<group>"; };
 		7F9DB40F27500DCE002B040C /* Testspel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Testspel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F9DB41227500DCE002B040C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -104,6 +106,7 @@
 				7F9DB41827500DCE002B040C /* Main.storyboard */,
 				7F42E7E32751315500BE120D /* ChoiceViewController.swift */,
 				7F9DB4422750E5DC002B040C /* SecondTryViewController.swift */,
+				7F272BAD2758DC88005824DA /* Game.swift */,
 				7F9DB41227500DCE002B040C /* AppDelegate.swift */,
 				7F9DB41427500DCE002B040C /* SceneDelegate.swift */,
 				7F9DB41B27500DD2002B040C /* Assets.xcassets */,
@@ -264,6 +267,7 @@
 				7F9DB41327500DCE002B040C /* AppDelegate.swift in Sources */,
 				7F42E7E42751315500BE120D /* ChoiceViewController.swift in Sources */,
 				7F9DB4432750E5DC002B040C /* SecondTryViewController.swift in Sources */,
+				7F272BAE2758DC88005824DA /* Game.swift in Sources */,
 				7F9DB41527500DCE002B040C /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
