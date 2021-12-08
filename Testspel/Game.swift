@@ -10,7 +10,7 @@ import UIKit
 
 class Game {
     
-    var winList3 = [[ 1,2,3],[4,5,6],[7,8,9],[1,4,7],[2,5,8],[3,6,9],[1,4,9],[3,5,7]]
+    var winList3 = [[ 1,2,3],[4,5,6],[7,8,9],[1,4,7],[2,5,8],[3,6,9],[1,5,9],[3,5,7]]
     
     var winList4 = [[1,2,3,4],[5,6,7,8] ,[9,10,11,12],[13,14,15,16],[1,5,9,13],[2,6,10,14],
                    [3,7,11,15],[4,8,12,16],[ 1,6,11,16],[4,7,10,13]]
@@ -29,6 +29,8 @@ class Game {
         } else {
             return false }
     }
+    
+ 
     
     func addToPlayer1List(imageLocation: Int){
         player1list.append(imageLocation)
@@ -49,27 +51,46 @@ class Game {
         } else {
             playerlist = player2list
         }
-        
-        
+                
         if choice == "3 X 3" {
-            
             for win in winList3 {
-                if win.allSatisfy(playerlist.contains)    {return true}
+                if win.allSatisfy(playerlist.contains) {
+                    return true
+                }
             }
-             return false
         }
-        else if choice == "4 X 4" {
-            
-            for win in winList4 {
-                if win.allSatisfy(playerlist.contains)    {return true}
+          else  if choice == "4 X 4" {
+                for win in winList4 {
+                    if  win.allSatisfy(playerlist.contains) {
+                               return true }
+                   
+                      }
             }
-             return false
+        
+        return false
+        }
+    
+    func clearLists() {
+        player1list.removeAll() ; player2list.removeAll()
+    }
+    
+    func checkDraw(choice : String) -> Bool  {
+        var limit = 0
+        if choice == "3 X 3" {
+          limit = 8
+        } else if choice == "4 X 4"{
+            limit = 15
         }
         
-        else {return false}
+        if player1list.count + player2list.count > limit {
+            return true
+        } else {
+            return false }
     }
     
     
+}
+
 //    if choice == "3 X 3" {
 //
 //
@@ -112,24 +133,3 @@ class Game {
 //    else {return false}
 //}
 //
-    func clearLists() {
-        player1list.removeAll() ; player2list.removeAll()
-    }
-    
-    func checkDraw(choice : String) -> Bool  {
-        var limit = 0
-        if choice == "3 X 3" {
-          limit = 8
-        } else if choice == "4 X 4"{
-            limit = 15
-        }
-        
-        if player1list.count + player2list.count > limit {
-            return true
-        } else {
-            return false }
-    }
-    
-    
-}
-

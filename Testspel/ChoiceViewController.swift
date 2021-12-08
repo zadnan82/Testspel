@@ -9,6 +9,7 @@ import UIKit
 
 class ChoiceViewController: UIViewController , UIPickerViewDataSource , UIPickerViewDelegate {
 
+    @IBOutlet weak var ai: UISwitch!
     @IBOutlet weak var player1NameTF: UITextField!
     @IBOutlet weak var player2NameTF: UITextField!
     @IBOutlet weak var gamePickerView: UIPickerView!
@@ -73,11 +74,8 @@ class ChoiceViewController: UIViewController , UIPickerViewDataSource , UIPicker
                 performSegue(withIdentifier: seguesto3, sender: self)
         }
     }
-  
-     
 }
    
-
  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
      if segue.identifier == seguesto3 {
@@ -97,8 +95,16 @@ class ChoiceViewController: UIViewController , UIPickerViewDataSource , UIPicker
          if let game = layout {
              destinationVC.choice = String(game)
          }
-         
+         if ai.isOn {
+                    destinationVC.ai = true
+             destinationVC.pName2 = "Computer"
+                    
+         } else {
+             destinationVC.ai = false
+         }
      }
+     
+   
     
      else if  segue.identifier == seguesto4 {
         let destinationVC1 = segue.destination as! SecondTryViewController
@@ -113,8 +119,15 @@ class ChoiceViewController: UIViewController , UIPickerViewDataSource , UIPicker
          if let game = layout {
              destinationVC1.choice = String(game)
          }
-        }
+         if ai.isOn {
+                    destinationVC1.ai = true
+             destinationVC1.pName2 = "Computer"
+                    
+         } else {
+             destinationVC1.ai = false
+         }
+     }
+     
+    
  }
-    
-    
 }

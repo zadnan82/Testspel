@@ -50,13 +50,16 @@ class SecondTryViewController: UIViewController {
     
     var player1 : Bool = false
     var player2 : Bool = false
+    var ai : Bool = false
     var number = 0
     var player1Score = 0
     var player2Score = 0
+    var playerScore = 0
     var winner = ""
     var pName1 = "Player 1"
     var pName2 = "Player 2"
     var choice = ""
+    var pName = ""
     var game = Game()
     
     override func viewDidLoad() {
@@ -69,19 +72,25 @@ class SecondTryViewController: UIViewController {
             player1NameLabel2.text = pName1
             player2NameLabel2.text = pName2
         }
+        
+        if ai == false {
         randomplayer()
+        } else {
+            aiTurn()
+        }
     }
     
     @IBAction func tapped(_ sender: UITapGestureRecognizer) {
         guard let imageView = sender.view as? UIImageView else { return }
         let imageLocation = imageView.tag
-        
+        if ai == false {
         if game.canPlay(imageLocation: imageLocation) {
             if player1 == true {
                 imageView.image = UIImage(named: "xsign")
                 game.addToPlayer1List(imageLocation: imageLocation)
                 if game.checkWinner( player1: player1 , choice: choice) {
                     playerCheck(player1: player1)
+                    return
                     }
                 player1 = false ; player2 = true
                 }
@@ -90,8 +99,39 @@ class SecondTryViewController: UIViewController {
                 game.addToPlayer2List(imageLocation: imageLocation)
                 if game.checkWinner( player1: player1 , choice: choice) {
                     playerCheck(player1: player1)
+                    return
                     }
                 player2 = false ; player1 = true
+                }
+        }
+        } else {
+            if game.canPlay(imageLocation: imageLocation) {
+                
+                if player1 == true {
+                    print("player 1 is true ")
+                    imageView.image = UIImage(named: "xsign")
+                    print("player 1 image is placed ")
+                    game.addToPlayer1List(imageLocation: imageLocation)
+                    print("player 1 add to list ")
+                    if game.checkWinner( player1: player1 , choice: choice) {
+                        print("player 1 checked for win ")
+                        playerCheck(player1: player1)
+                        print("player 1 in announced")
+                        return
+                        }
+                    player1 = false ; player2 = true
+                    print("player 1 switched to false ")
+            if randomAI() {
+                print("randomai is done ")
+                if game.checkWinner( player1: player1 , choice: choice) {
+                    print("ai is checked for win")
+                    playerCheck(player1: player1)
+                    print("ai is announed ")
+                    return
+                    }
+                player1 = true ; player2 = false
+                }
+    }
             }
         }
         if game.checkDraw(choice : choice) {
@@ -102,9 +142,92 @@ class SecondTryViewController: UIViewController {
         return
     }
     
+    func aiTurn() {
+        player1 = true ; player2 = false
+        announcementLabel?.text = "\(pName1) X will start playing"
+        announcementLabel2?.text = "\(pName1) X will start playing"
+        
+    }
+        func randomAI() -> Bool {
+            var list : [Int]
+           let list3 = [1, 2, 3, 4, 5,6,7,8,9]
+            let list4 = [1, 2, 3, 4, 5,6,7,8,9,10,11, 12, 13, 14, 15,16]
+            if choice == "3 X 3" {
+                list = list3
+            } else { list = list4}
+            
+            list.shuffle()
+            
+            for randomPosition in list {
+              
+                if game.canPlay(imageLocation: randomPosition) {
+                    var imageV : UIImageView?
+                   let ai = randomPosition
+                   if choice == "3 X 3" {
+                    if ai == 1 { imageV = a1
+                        imageV?.image = UIImage(named: "osign")}
+                    else if ai == 2 { imageV = a2
+                        imageV?.image = UIImage(named: "osign")}
+                    else if ai == 3 { imageV = a3
+                        imageV?.image = UIImage(named: "osign")}
+                    else  if ai == 4 { imageV = b1
+                        imageV?.image = UIImage(named: "osign")}
+                    else if ai == 5 { imageV = b2
+                        imageV?.image = UIImage(named: "osign")}
+                    else if ai == 6 { imageV = b3
+                        imageV?.image = UIImage(named: "osign")}
+                    else if ai == 7 { imageV = c1
+                        imageV?.image = UIImage(named: "osign")}
+                    else if ai == 8 { imageV = c2
+                        imageV?.image = UIImage(named: "osign")}
+                    else if ai == 9 { imageV = c3
+                        imageV?.image = UIImage(named: "osign")}
+                    game.addToPlayer2List(imageLocation: randomPosition)
+                    return true
+                   } else {
+                       
+                       if ai == 1 { imageV = a11
+                           imageV?.image = UIImage(named: "osign")}
+                       else if ai == 2 { imageV = a22
+                           imageV?.image = UIImage(named: "osign")}
+                       else if ai == 3 { imageV = a33
+                           imageV?.image = UIImage(named: "osign")}
+                       else  if ai == 4 { imageV = a44
+                           imageV?.image = UIImage(named: "osign")}
+                       else if ai == 5 { imageV = b11
+                           imageV?.image = UIImage(named: "osign")}
+                       else if ai == 6 { imageV = b22
+                           imageV?.image = UIImage(named: "osign")}
+                       else if ai == 7 { imageV = b33
+                           imageV?.image = UIImage(named: "osign")}
+                       else if ai == 8 { imageV = b44
+                           imageV?.image = UIImage(named: "osign")}
+                       else if ai == 9 { imageV = c11
+                           imageV?.image = UIImage(named: "osign")}
+                       else if ai == 10 { imageV = c22
+                           imageV?.image = UIImage(named: "osign")}
+                       else if ai == 11 { imageV = c33
+                           imageV?.image = UIImage(named: "osign")}
+                       else if ai == 12 { imageV = c44
+                           imageV?.image = UIImage(named: "osign")}
+                       else  if ai == 13 { imageV = d11
+                           imageV?.image = UIImage(named: "osign")}
+                       else if ai == 14 { imageV = d22
+                           imageV?.image = UIImage(named: "osign")}
+                       else if ai == 15 { imageV = d33
+                           imageV?.image = UIImage(named: "osign")}
+                       else if ai == 16 { imageV = d44
+                           imageV?.image = UIImage(named: "osign")}
+                       game.addToPlayer2List(imageLocation: randomPosition)
+                       return true
+                   }
+        }
+            }
+            return false
+        }
+            
     func playerCheck(player1 : Bool){
-        var playerScore : Int
-        var pName : String
+    
         if player1 {
             pName = pName1
             player1Score += 1
@@ -120,6 +243,7 @@ class SecondTryViewController: UIViewController {
         }
         winnerLabel?.text = "\(pName) gets a point!"
         winnerLabel2?.text = "\(pName) gets a point!"
+        winner = pName
         deactivePlayers()
         return
     }
@@ -144,6 +268,7 @@ class SecondTryViewController: UIViewController {
     }
     
     @IBAction func playAgain(_ sender: Any) {
+       
         game.clearLists()
         a1?.image = UIImage(named: "") ; a2?.image = UIImage(named: "")
         a3?.image = UIImage(named: "") ; b1?.image = UIImage(named: "")
@@ -160,6 +285,10 @@ class SecondTryViewController: UIViewController {
         d33?.image = UIImage(named: ""); d44?.image = UIImage(named: "")
         winnerLabel?.text = ""
         winnerLabel2?.text = ""
+        
+        if ai {
+            aiTurn()
+        } else {
          if winner == pName1 {
             announcementLabel?.text = ("\(winner) X will start now")
             announcementLabel2?.text = ("\(winner) X will start now")
@@ -173,4 +302,4 @@ class SecondTryViewController: UIViewController {
         }
     }
 }
-
+}

@@ -78,6 +78,17 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="R3D-Lm-crK">
+                                <rect key="frame" x="226" y="290" width="49" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </switch>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Computer" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bG1-sj-fql">
+                                <rect key="frame" x="97" y="295" width="77" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="italicSystem" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="b3G-EX-Hby"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -100,6 +111,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="ai" destination="R3D-Lm-crK" id="aCc-BV-0qP"/>
                         <outlet property="gamePickerView" destination="dne-i4-baB" id="Zk6-LR-UsN"/>
                         <outlet property="player1NameTF" destination="clS-GE-bWi" id="bbk-94-kxy"/>
                         <outlet property="player2NameTF" destination="RFs-NO-yBE" id="jyF-A0-Nhh"/>
